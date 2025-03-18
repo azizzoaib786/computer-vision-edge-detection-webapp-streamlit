@@ -1,0 +1,10 @@
+streamlit
+opencv-python
+numpy
+matplotlib
+scikit-image
+scikit-learn
+facenet-pytorch
+torch
+cvlib
+tensorflow
