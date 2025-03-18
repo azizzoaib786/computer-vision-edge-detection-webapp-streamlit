@@ -30,8 +30,8 @@ This web application utilizes [Streamlit](https://streamlit.io/) to perform mult
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/yourusername/your-repo.git
-cd your-repo
+git clone https://github.com/azizzoaib786/computer-vision-edge-detection-webapp-streamlit.git
+cd computer-vision-edge-detection-webapp-streamlit
 ```
 
 2. **Install dependencies:**
