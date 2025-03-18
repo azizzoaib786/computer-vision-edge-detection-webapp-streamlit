@@ -3,10 +3,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from facenet_pytorch import MTCNN
-from skimage.filters import threshold_multiotsu
 from sklearn.cluster import KMeans
 import cvlib as cv
-from cvlib.object_detection import draw_bbox
 
 st.set_page_config(layout="wide")
 st.title("Facial Edge Detection and Segmentation")
@@ -42,13 +40,18 @@ if uploaded_file:
     for name, (kx, ky) in edge_methods.items():
         edge_results[name] = edge_detection(gaussian_blurred, kx, ky)
 
+    # Improved Laplacian Edge Detection
+    laplacian_edges = cv2.Laplacian(gaussian_blurred, cv2.CV_64F, ksize=3)
+    laplacian_edges = np.uint8(np.absolute(laplacian_edges))
+    laplacian_edges = cv2.convertScaleAbs(laplacian_edges)
+
     edge_results["Canny"] = cv2.Canny(gaussian_blurred, 20, 60)
-    edge_results["Laplacian"] = cv2.Laplacian(gaussian_blurred, cv2.CV_64F)
+    edge_results["Laplacian"] = laplacian_edges
 
     st.subheader("Edge Detection Results")
     fig, axes = plt.subplots(1, len(edge_results), figsize=(20, 5))
     for ax, (name, result) in zip(axes, edge_results.items()):
-        ax.imshow(np.abs(result), cmap='gray')
+        ax.imshow(result, cmap='gray')
         ax.set_title(name)
         ax.axis('off')
     st.pyplot(fig)
