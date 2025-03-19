@@ -82,7 +82,7 @@ if uploaded_file:
         "MTCNN Detection": mtcnn_img,
     }
 
-    fig, axes = plt.subplots(1, 4, figsize=(20, 5))
+    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
     for ax, (title, seg_img) in zip(axes, segmentation_results.items()):
         if seg_img.ndim == 2:
             ax.imshow(seg_img, cmap='gray')
