@@ -1,10 +1,9 @@
 streamlit
-opencv-python
 numpy
 matplotlib
-scikit-image
-scikit-learn
 facenet-pytorch
-torch
+scikit-learn
 cvlib
-tensorflow
+torch
+Pillow
+opencv-python-headless
