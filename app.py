@@ -76,19 +76,10 @@ if uploaded_file:
             cv2.rectangle(mtcnn_img, (x1, y1), (x2, y2), (255, 0, 0), 2)
             cv2.putText(mtcnn_img, f'{prob:.2f}', (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 2)
 
-    # CVLIB Face Detection
-    faces, confidences = cv.detect_face(image_rgb)
-    cvlib_img = image_rgb.copy()
-    for face, conf in zip(faces, confidences):
-        x1, y1, x2, y2 = face
-        cv2.rectangle(cvlib_img, (x1, y1), (x2, y2), (0,255,0), 2)
-        cv2.putText(cvlib_img, f'{conf:.2f}', (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
-
     segmentation_results = {
         "Otsu Threshold": otsu_thresh,
         "K-Means Segmentation": segmented_img,
         "MTCNN Detection": mtcnn_img,
-        "CVLIB Face Detection": cvlib_img
     }
 
     fig, axes = plt.subplots(1, 4, figsize=(20, 5))
