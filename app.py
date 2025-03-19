@@ -40,12 +40,13 @@ if uploaded_file:
     for name, (kx, ky) in edge_methods.items():
         edge_results[name] = edge_detection(gaussian_blurred, kx, ky)
 
-    # Improved Laplacian Edge Detection
-    laplacian_edges = cv2.Laplacian(gaussian_blurred, cv2.CV_64F, ksize=3)
+    edge_results["Canny"] = cv2.Canny(gaussian_blurred, 20, 60)
+
+    # Manual Laplacian Edge Detection Kernel
+    laplacian_kernel = np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]], dtype=np.float32)
+    laplacian_edges = cv2.filter2D(gaussian_blurred, cv2.CV_64F, laplacian_kernel)
     laplacian_edges = np.uint8(np.absolute(laplacian_edges))
     laplacian_edges = cv2.convertScaleAbs(laplacian_edges)
-
-    edge_results["Canny"] = cv2.Canny(gaussian_blurred, 20, 60)
     edge_results["Laplacian"] = laplacian_edges
 
     st.subheader("Edge Detection Results")
