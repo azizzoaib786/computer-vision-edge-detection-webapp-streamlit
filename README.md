@@ -17,7 +17,6 @@ This web application utilizes [Streamlit](https://streamlit.io/) to perform mult
 
 - **Face Detection**:
   - MTCNN (Multi-task Cascaded Convolutional Networks)
-  - CVLib (using TensorFlow backend)
 
 ## Technologies Used
 - [Streamlit](https://streamlit.io/) for interactive web application interface
